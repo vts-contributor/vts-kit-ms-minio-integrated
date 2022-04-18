@@ -1,0 +1,1 @@
+# vts-kit-ms-minio-integrated
