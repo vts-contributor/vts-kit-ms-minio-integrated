@@ -3,7 +3,7 @@ MinIO Integrated Library for Spring Boot
 This library provides utilities that make it easy to integrate MinIO storage into a spring boot project
 
 Feature List:
-* [Upload Multipartfile] (#upload-multipartfile)
+* [Upload Multipartfile](#upload-multipartfile)
 
 Quick start 
 -------
@@ -53,7 +53,7 @@ mvn clean install -DskipTests
 
 Contribute
 -------
-[Contributors Guide](CONTRIBUTING.md)
+Please refer [Contributors Guide](CONTRIBUTING.md)
 
 License
 -------
