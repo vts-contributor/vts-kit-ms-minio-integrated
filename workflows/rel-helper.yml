@@ -1,0 +1,52 @@
+name: Release Helper
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '8'
+        cache: 'maven'
+    - name: Parse Tag
+      uses: actions/github-script@v6
+      with:
+          script: |
+            const tag = context.ref.replace('refs\/tags\/', '')
+            core.exportVariable('tag', tag)
+    - name: Publish
+      run: |
+        mvn deploy \
+          --settings .settings.xml \
+          -Denv.NEXUS_USERNAME=${{ secrets.NEXUS_USERNAME }} \
+          -Denv.NEXUS_PASS=${{ secrets.NEXUS_PASS }} \
+          -Denv.NEXUS_REPO_RELEASE=${{ secrets.NEXUS_REPO_RELEASE }} \
+          -Dmaven.test.skip=true
+    - name: Generate Changelog
+      id: Changelog
+      uses: mikepenz/release-changelog-builder-action@v1
+      with:
+        configuration: ".github/changelog.json"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ env.tag }}
+        release_name: ${{ env.tag }}
+        body: |
+          ${{ steps.Changelog.outputs.changelog }}
+        draft: false
+        prerelease: false
