@@ -22,7 +22,7 @@ minio:
   server: http://<host>:<port>
   access-key: <access-key>
   secret-key: <secret-key>
-  bucket: test-framework
+  bucket: <bucket>
   auto-create-bucket: true
 ```
 
