@@ -14,7 +14,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           issue-message: ''
           pr-message: |
-            Hello @{}! Thank you for your contribution!
+            Hello ${{ github.event.pull_request.user.login }}! Thank you for your contribution!
 
             As this is your first contribution be sure to check out the checklist.
 
