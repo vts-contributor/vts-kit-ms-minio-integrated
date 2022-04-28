@@ -11,6 +11,8 @@
     <properties>
         <spring-boot.version>2.6.6</spring-boot.version>
         <spring.version>5.3.19</spring.version>
+        <!--suppress UnresolvedMavenProperty -->
+        <sonar.organization>${env.SONAR_ORGANIZATION}</sonar.organization>
     </properties>
 
     <licenses>
