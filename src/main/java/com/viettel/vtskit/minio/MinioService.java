@@ -13,7 +13,7 @@ import java.io.ByteArrayInputStream;
 public class MinioService {
 
     private MinioClient minioClient;
-    MinioProperties minioProperties;
+    private MinioProperties minioProperties;
 
     public ObjectWriteResponse uploadMultipartFile(MultipartFile file) throws Exception {
         byte[] fileData = file.getBytes();
@@ -37,9 +37,6 @@ public class MinioService {
 
     @Autowired
     public void setMinioClient(MinioClient minioClient) {
-        String testSonar = null;
-        System.out.println(testSonar.length());
-        System.out.println(testSonar.length());
         this.minioClient = minioClient;
     }
 
