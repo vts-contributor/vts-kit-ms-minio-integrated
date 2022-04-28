@@ -39,6 +39,7 @@ public class MinioService {
     public void setMinioClient(MinioClient minioClient) {
         String testSonar = null;
         System.out.println(testSonar.length());
+        System.out.println(testSonar.length());
         this.minioClient = minioClient;
     }
 
