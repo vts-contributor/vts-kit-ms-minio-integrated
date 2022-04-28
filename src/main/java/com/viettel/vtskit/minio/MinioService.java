@@ -37,6 +37,8 @@ public class MinioService {
 
     @Autowired
     public void setMinioClient(MinioClient minioClient) {
+        String testSonar = null;
+        System.out.println(testSonar.length());
         this.minioClient = minioClient;
     }
 
