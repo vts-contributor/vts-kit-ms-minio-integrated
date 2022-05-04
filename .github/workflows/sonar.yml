@@ -44,7 +44,7 @@ jobs:
             })
             const pr = prInfo.data
             core.exportVariable('prBranch', pr.head.ref)
-            core.exportVariable('prBase', pr.base.ref)
+            core.exportVariable('prBase', "master")
             core.exportVariable('prNumber', pr.number)
             core.exportVariable('prRepo', "${{ github.repository }}")
             core.exportVariable('endpoint', "https://api.github.com/")
