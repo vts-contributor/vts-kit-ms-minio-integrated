@@ -9,5 +9,8 @@ public class ExampleTests {
 	public void example_Test() {
 		assertTrue("Pass Example Test", true);
 	}
-
+	@Test
+	public void example2_Test() {
+		assertTrue("Pass Example Test", true);
+	}
 }
