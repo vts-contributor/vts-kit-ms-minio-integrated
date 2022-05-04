@@ -3,7 +3,7 @@ package com.viettel.vtskit.minio;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ExampleTest {
+public class ExampleTests {
 
 	@Test
 	public void example_Test() {
