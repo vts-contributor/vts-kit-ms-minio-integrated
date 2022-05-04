@@ -44,7 +44,7 @@ jobs:
             })
             const pr = prInfo.data
             core.exportVariable('prBranch', pr.head.ref)
-            core.exportVariable('prBase', "master")
+            core.exportVariable('prBase', pr.base.ref)
             core.exportVariable('prNumber', pr.number)
             core.exportVariable('prRepo', "${{ github.repository }}")
             core.exportVariable('endpoint', "https://api.github.com/")
@@ -68,7 +68,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       - name: Build and analyze (Push)
         if: github.event.workflow_run.event == 'push'
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.verbose=true -Dsonar.projectName=${{ env.sonarProjectName }} -Dsonar.projectKey=${{ env.sonarProjectName }} -Dsonar.version=${{ env.sonarVersion }} -Dsonar.java.binaries=${{ env.sonarJavaBinaries }} -Dsonar.sources=${{ env.sonarSource }} -Dsonar.inclusions=${{ env.sonarInclusion }} -Dsonar.exclusions=${{ env.sonarExclusion }} -Dsonar.coverage.exclusions=${{ env.sonarCoverageExclusion }} -Dmaven.test.skip=${{ env.sonarSkipTest }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.verbose=true -Dsonar.branch.name=${{ github.event.workflow_run.head_branch }} -Dsonar.projectName=${{ env.sonarProjectName }} -Dsonar.projectKey=${{ env.sonarProjectName }} -Dsonar.version=${{ env.sonarVersion }} -Dsonar.java.binaries=${{ env.sonarJavaBinaries }} -Dsonar.sources=${{ env.sonarSource }} -Dsonar.inclusions=${{ env.sonarInclusion }} -Dsonar.exclusions=${{ env.sonarExclusion }} -Dsonar.coverage.exclusions=${{ env.sonarCoverageExclusion }} -Dmaven.test.skip=${{ env.sonarSkipTest }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
