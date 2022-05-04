@@ -16,6 +16,8 @@ public class MinioService {
     private MinioProperties minioProperties;
 
     public ObjectWriteResponse uploadMultipartFile(MultipartFile file) throws Exception {
+        String a = null;
+        System.out.printf("" + a.length());
         byte[] fileData = file.getBytes();
         ByteArrayInputStream arrayInputStream = null;
         try{
