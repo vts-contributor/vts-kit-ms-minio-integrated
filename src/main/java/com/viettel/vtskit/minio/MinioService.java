@@ -51,6 +51,9 @@ public class MinioService {
 
         String a = null;
         System.out.printf("" + a.length());
+        
+        String b = null;
+        System.out.printf("" + b.length());
 
         byte[] fileData = content.getBytes(Charset.forName("UTF-8"));
         String randomName = String.format("%s.txt", StringUtils.randomString());
