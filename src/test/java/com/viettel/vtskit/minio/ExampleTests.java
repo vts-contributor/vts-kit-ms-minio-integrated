@@ -18,4 +18,9 @@ public class ExampleTests {
 	public void exampl3_Test() {
 		assertTrue("Pass Example Test", true);
 	}
+	
+	@Test
+	public void exampl4_Test() {
+		assertTrue("Pass Example Test", true);
+	}
 }
