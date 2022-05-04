@@ -34,7 +34,6 @@ jobs:
     - name: Extract Maven project version
       run: echo ::set-output name=version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
       id: project
-    - run: echo '${{ toJson(github) }}'
     - name: Prepare changelog
       run: |
         sed -i -e "s|<sonar.organization>\${env.SONAR_ORGANIZATION}</sonar.organization>|<sonar.organization>${{ secrets.SONAR_ORGANIZATION }}</sonar.organization>|g" pom.xml
@@ -43,17 +42,21 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          const prInfo = await github.rest.repos.listPullRequestsAssociatedWithCommit({
-            commit_sha: "${{ github.event.workflow_run.head_commit.id }}",
-            owner: "${{ github.event.workflow_run.head_commit.author.name }}",
-            repo: "${{ github.event.workflow_run.head_repository.name }}"
+          const prSearch = await github.rest.search.issuesAndPullRequests({
+            q: "is:pr is:open sha:${{ github.event.workflow_run.head_commit.id }}"
           })
-          const pr = prInfo.data[0]
+          const prNumber = prSearch.data.items[0].number
+          const prInfo = await github.rest.pulls.get({
+            pull_number: prNumber,
+            owner: context.repo.owner,
+            repo: context.repo.repo
+          })
+          const pr = prInfo.data
           core.exportVariable('prBranch', pr.head.ref)
           core.exportVariable('prBase', pr.base.ref)
           core.exportVariable('prNumber', pr.number)
           core.exportVariable('prRepo', "${{ github.repository }}")
-          core.exportVariable('endpoint', pr.api_url)
+          core.exportVariable('endpoint', "https://api.github.com/")
           core.exportVariable('sonarVersion', "${{ steps.project.outputs.version }}")
     - name: Build and analyze (PR)
       if: github.event.workflow_run.event == 'pull_request'
