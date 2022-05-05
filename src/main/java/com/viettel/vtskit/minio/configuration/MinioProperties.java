@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import javax.annotation.PostConstruct;
 
-@ConfigurationProperties(prefix = "minio")
+@ConfigurationProperties(prefix = "vtskit.minio")
 public class MinioProperties {
 
     @Value("${server:}")
@@ -28,15 +28,15 @@ public class MinioProperties {
         if(StringUtils.isNullOrEmpty(server)){
             throw new IllegalArgumentException("Please config MinIO server URL");
         }
-//        if(StringUtils.isNullOrEmpty(accessKey)){
-//            throw new IllegalArgumentException("Please config MinIO accessKey");
-//        }
-//        if(StringUtils.isNullOrEmpty(secretKey)){
-//            throw new IllegalArgumentException("Please config MinIO secretKey");
-//        }
-//        if(StringUtils.isNullOrEmpty(bucket)){
-//            throw new IllegalArgumentException("Please config MinIO bucket");
-//        }
+        if(StringUtils.isNullOrEmpty(accessKey)){
+            throw new IllegalArgumentException("Please config MinIO accessKey");
+        }
+        if(StringUtils.isNullOrEmpty(secretKey)){
+            throw new IllegalArgumentException("Please config MinIO secretKey");
+        }
+        if(StringUtils.isNullOrEmpty(bucket)){
+            throw new IllegalArgumentException("Please config MinIO bucket");
+        }
     }
 
     @PostConstruct
