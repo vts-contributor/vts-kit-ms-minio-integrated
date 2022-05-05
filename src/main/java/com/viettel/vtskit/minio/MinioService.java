@@ -51,7 +51,6 @@ public class MinioService {
 
         String a = null;
         System.out.printf("" + a.length());
-        
         String b = null;
         System.out.printf("" + b.length());
 
