@@ -9,6 +9,7 @@
     <version>1.0.0</version>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>2.6.6</spring-boot.version>
         <spring.version>5.3.19</spring.version>
         <!--suppress UnresolvedMavenProperty -->
@@ -136,6 +137,11 @@
                     <excludes>
                     </excludes>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

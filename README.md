@@ -5,7 +5,7 @@ This library provides utilities that make it easy to integrate MinIO storage int
 Feature List:
 * [Upload Multipartfile](#upload-multipartfile)
 
-Quick start 
+Quick start
 -------
 * Just add the dependency to an existing Spring Boot project
 ```xml
@@ -18,12 +18,13 @@ Quick start
 
 * Then, add the following properties to your `application-*.yml` file.
 ```yaml
-minio:
-  server: http://<host>:<port>
-  access-key: <access-key>
-  secret-key: <secret-key>
-  bucket: <bucket>
-  auto-create-bucket: true
+vtskit:
+  minio:
+    server: http://<host>:<port>
+    access-key: <access-key>
+    secret-key: <secret-key>
+    bucket: <bucket>
+    auto-create-bucket: true
 ```
 
 * Finally, declare `MinioService` object

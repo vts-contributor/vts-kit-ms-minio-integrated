@@ -7,7 +7,7 @@ public class ExampleTests {
 
 	@Test
 	public void example_Test() {
-		assertTrue("Pass Example Test", true);
+		assertTrue("Example Test", true);
 	}
 	@Test
 	public void example2_Test() {
