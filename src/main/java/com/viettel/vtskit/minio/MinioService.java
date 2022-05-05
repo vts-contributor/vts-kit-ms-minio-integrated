@@ -49,9 +49,6 @@ public class MinioService {
 
     public UploadResult uploadString(String content) throws Exception {
 
-        String a = null;
-        System.out.printf("" + a.length());
-
         byte[] fileData = content.getBytes(Charset.forName("UTF-8"));
         String randomName = String.format("%s.txt", StringUtils.randomString());
         return uploadBytes(randomName, fileData, "text/plain");
